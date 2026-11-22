@@ -33,62 +33,82 @@ st.markdown("""
         padding-top: 2rem !important;
     }
 
-    /* Light Sky Blue Main Background */
+    /* Very Light Green Main Background */
     .stApp {
-        background: linear-gradient(180deg, #D6F0FF 0%, #EAF7FF 50%, #F5FBFF 100%);
-        color: #0B2545;
+        background: linear-gradient(180deg, #E8F5E9 0%, #F1F8E9 50%, #F9FBF9 100%) !important;
+        color: #143622 !important;
     }
 
-    /* Readable Dark Text for Headings & Labels */
+    /* Readable Dark Forest Green Text for Headings & Labels */
     h1, h2, h3, p, label, .stMarkdown {
-        color: #0B2545 !important;
+        color: #143622 !important;
     }
 
     /* Clean White Input Boxes */
+    div[data-baseweb="input"] > div,
     .stTextInput input {
         background-color: #FFFFFF !important;
-        color: #0B2545 !important;
-        border: 2px solid #64B5F6 !important;
+        color: #143622 !important;
+        border-color: #81C784 !important;
         border-radius: 10px !important;
         font-size: 1.05rem !important;
     }
 
-    /* Green Farmer-Friendly Action Button */
+    /* Green Farmer-Friendly Action Button with Pure White Text */
     .stButton > button {
-        background-color: #1B7F3A !important;
-        color: #FFFFFF !important;
+        background-color: #2E7D32 !important;
         border: none !important;
         border-radius: 10px !important;
         font-size: 1.05rem !important;
         font-weight: 700 !important;
     }
+    .stButton > button, .stButton > button * {
+        color: #FFFFFF !important;
+    }
     .stButton > button:hover {
-        background-color: #14632D !important;
+        background-color: #1B5E20 !important;
+    }
+
+    /* Success Alert Banner ko Light Green banayein */
+    [data-testid="stAlert"], [data-testid="stAlert"] > div {
+        background-color: #DDF3E4 !important;
+        color: #143622 !important;
+        border: 1px solid #81C784 !important;
+        border-radius: 10px !important;
     }
 
     /* Top Metric Cards */
     [data-testid="stMetric"] {
-        background-color: #FFFFFF;
-        border: 1.5px solid #90CAF9;
-        border-top: 5px solid #0288D1;
-        padding: 15px;
-        border-radius: 12px;
-        box-shadow: 0 3px 10px rgba(2, 136, 209, 0.08);
+        background-color: #FFFFFF !important;
+        border: 1.5px solid #A5D6A7 !important;
+        border-top: 5px solid #2E7D32 !important;
+        padding: 15px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 3px 10px rgba(46, 125, 50, 0.08) !important;
     }
     [data-testid="stMetricLabel"] {
-        color: #37474F !important;
+        color: #3E5C49 !important;
         font-weight: 600 !important;
     }
     [data-testid="stMetricValue"] {
-        color: #0B2545 !important;
+        color: #143622 !important;
         font-weight: 800 !important;
+    }
+
+    /* Metric Cards ke neeche wale dark pill badges ko Light Green banayein */
+    [data-testid="stMetricDelta"], [data-testid="stMetricDelta"] > div {
+        background-color: #E8F5E9 !important;
+        color: #1B5E20 !important;
+        padding: 2px 8px !important;
+        border-radius: 6px !important;
+        font-weight: 600 !important;
     }
 
     /* Data Cards */
     .info-card {
         background-color: #FFFFFF;
-        border: 1px solid #B3E5FC;
-        border-left: 6px solid #1B7F3A;
+        border: 1px solid #C8E6C9;
+        border-left: 6px solid #2E7D32;
         padding: 16px;
         border-radius: 12px;
         margin-bottom: 12px;
@@ -97,7 +117,7 @@ st.markdown("""
     .card-title {
         font-size: 1.08rem;
         font-weight: 700;
-        color: #0D47A1;
+        color: #1B5E20;
         margin-bottom: 6px;
     }
     .card-body {
@@ -113,6 +133,7 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
 # Key load (Local .env ya Streamlit Cloud Secrets se)
 serpapi_key = os.getenv("SERPAPI_KEY") or st.secrets.get("SERPAPI_KEY", "")
 
