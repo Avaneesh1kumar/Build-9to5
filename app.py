@@ -17,8 +17,8 @@ st.markdown("""
 <style>
     /* Light Sky Blue Main Background */
     .stApp {
-        background: linear-gradient(180deg, #D6F0FF 0%, #EAF7FF 50%, #F5FBFF 100%);
-        color: #0B2545;
+        background: linear-gradient(180deg, #E8F5E9 0%, #F1F8E9 50%, #F9FBF9 100%) !important;
+        color: #143622 !important;
     }
 
     /* Sidebar Sky Blue */
