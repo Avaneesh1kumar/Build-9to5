@@ -154,15 +154,25 @@ def fetch_serp_data(params):
     return search.get_dict()
 
 def extract_prices(snippets_list):
-    """Snippets me se ₹ wale mandi prices (quintal rates) extract karta hai"""
+    """Snippets me se ₹, Rs., INR, ya quintal rates extract karta hai"""
     prices = []
     for text in snippets_list:
-        matches = re.findall(r'₹\s?([0-9,]+)', text)
-        for m in matches:
+        # 1. ₹, Rs., ya INR ke baad aane wale numbers pakdein
+        currency_matches = re.findall(r'(?:₹|Rs\.?|INR)\s?([0-9,]+)', text, re.IGNORECASE)
+        for m in currency_matches:
             val = int(m.replace(",", ""))
-            # Per quintal realistic range filter (₹300 se ₹50,000)
             if 300 <= val <= 50000:
                 prices.append(val)
+            elif 5 <= val <= 200 and ("/kg" in text.lower() or "per kg" in text.lower()):
+                prices.append(val * 100)  # ₹35/kg ko ₹3500/qtl mein convert karein
+
+        # 2. Bina currency symbol ke "/quintal" ya "/qtl" wale numbers pakdein (e.g. 2500/quintal)
+        qtl_matches = re.findall(r'([0-9,]{3,5})\s*(?:/|per)\s*(?:quintal|qtl)', text, re.IGNORECASE)
+        for m in qtl_matches:
+            val = int(m.replace(",", ""))
+            if 300 <= val <= 50000:
+                prices.append(val)
+
     return sorted(list(set(prices)))
 
 if search_btn:
