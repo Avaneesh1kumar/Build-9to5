@@ -21,6 +21,26 @@ st.markdown("""
         color: #143622 !important;
     }
 
+    /* Input boxes ko white karein */
+    div[data-baseweb="input"] > div {
+        background-color: #FFFFFF !important;
+        color: #143622 !important;
+    }
+
+    /* Success banner ke inner container ko light green karein */
+    [data-testid="stAlert"] > div {
+        background-color: #DDF3E4 !important;
+        color: #143622 !important;
+    }
+
+    /* Metric ke neeche wale dark pill badges ko light green karein */
+    [data-testid="stMetricDelta"] > div {
+        background-color: #E8F5E9 !important;
+        color: #1B5E20 !important;
+        padding: 2px 8px;
+        border-radius: 6px;
+    }
+
     /* Sidebar Sky Blue */
     [data-testid="stSidebar"] {
         background-color: #BFE6FF;
