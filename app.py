@@ -273,7 +273,7 @@ if search_btn:
 
                 st.divider()
 
-                # 3 Columns
+                # 3 Columns (Clickable Cards -> Open in New Tab)
                 c1, c2, c3 = st.columns(3)
 
                 with c1:
@@ -282,13 +282,16 @@ if search_btn:
                         for item in organic_mandi[:4]:
                             title = item.get("title", "Market Report")
                             snippet = item.get("snippet", "No details available.")
+                            link = item.get("link", "#")
                             source = item.get("displayed_link", "Agmarknet").split("›")[0]
                             st.markdown(f"""
-                            <div class="info-card">
-                                <div class="card-title">{title}</div>
-                                <div class="card-body">{snippet}</div>
-                                <div class="card-meta">📊 Source: {source}</div>
-                            </div>
+                            <a href="{link}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
+                                <div class="info-card">
+                                    <div class="card-title">{title} ↗</div>
+                                    <div class="card-body">{snippet}</div>
+                                    <div class="card-meta">📊 Source: {source}</div>
+                                </div>
+                            </a>
                             """, unsafe_allow_html=True)
 
                 with c2:
@@ -301,12 +304,15 @@ if search_btn:
                             rating = place.get("rating", "N/A")
                             phone = place.get("phone", "Not listed")
                             hours = place.get("hours", "Open hours not listed")
+                            maps_link = place.get("link") or f"https://www.google.com/maps/search/?api=1&query={title.replace(' ', '+')}+{address.replace(' ', '+')}"
                             st.markdown(f"""
-                            <div class="info-card">
-                                <div class="card-title">{title} (⭐ {rating})</div>
-                                <div class="card-body">📌 {address}</div>
-                                <div class="card-meta">📞 {phone} | 🕒 {hours}</div>
-                            </div>
+                            <a href="{maps_link}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
+                                <div class="info-card">
+                                    <div class="card-title">{title} (⭐ {rating}) ↗</div>
+                                    <div class="card-body">📌 {address}</div>
+                                    <div class="card-meta">📞 {phone} | 🕒 {hours}</div>
+                                </div>
+                            </a>
                             """, unsafe_allow_html=True)
 
                 with c3:
@@ -316,13 +322,16 @@ if search_btn:
                         for scheme in scheme_results[:4]:
                             title = scheme.get("title", "Government Scheme")
                             snippet = scheme.get("snippet", "")
+                            link = scheme.get("link", "#")
                             source = scheme.get("displayed_link", "Govt Portal").split("›")[0]
                             st.markdown(f"""
-                            <div class="info-card">
-                                <div class="card-title">{title}</div>
-                                <div class="card-body">{snippet}</div>
-                                <div class="card-meta">🏛️ Portal: {source}</div>
-                            </div>
+                            <a href="{link}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
+                                <div class="info-card">
+                                    <div class="card-title">{title} ↗</div>
+                                    <div class="card-body">{snippet}</div>
+                                    <div class="card-meta">🏛️ Portal: {source}</div>
+                                </div>
+                            </a>
                             """, unsafe_allow_html=True)
 
             except Exception as e:
