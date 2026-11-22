@@ -1,3 +1,17 @@
+import os
+import re
+import streamlit as st
+from serpapi import GoogleSearch
+from dotenv import load_dotenv
+
+load_dotenv()
+
+st.set_page_config(
+    page_title="KisanMandi & Krishi Mitra",
+    page_icon="🌾",
+    layout="wide"
+)
+
 st.markdown("""
 <style>
     /* Upar wala black header bar aur Deploy button hide karein */
